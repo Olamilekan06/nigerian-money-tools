@@ -279,7 +279,6 @@ function openOrder(product, price) {
     behavior: "smooth"
   });
 }
-
 function submitOrder() {
 
   let name = document.getElementById("customerName").value;
@@ -291,14 +290,9 @@ function submitOrder() {
     return;
   }
 
-  alert(
-    "Order received!\\n\\n" +
-    "Plan: " + selectedProduct + "\\n" +
-    "Price: " + selectedPrice + "\\n" +
-    "Name: " + name + "\\n\\n" +
-    "Payment checkout will be connected next."
-  );
+  window.location.href = "https://paystack.shop/pay/xqfcw3r2p2";
 }
+
 
 </script>
 
