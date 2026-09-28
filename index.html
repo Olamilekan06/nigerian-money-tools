@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nigerian Money Tools</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f6;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #087443;
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 16px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 900px;
+      margin: 25px auto;
+    }
+
+    .intro {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .intro h2 {
+      color: #087443;
+      margin-bottom: 8px;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .tool h2 {
+      color: #087443;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 13px;
+      border: none;
+      border-radius: 7px;
+      background: #087443;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #065c35;
+    }
+
+    .result {
+      margin-top: 18px;
+      padding: 15px;
+      background: #eaf7f0;
+      border-left: 5px solid #087443;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      background: #222;
+      color: white;
+      padding: 25px;
+      margin-top: 30px;
+    }
+
+    .disclaimer {
+      font-size: 13px;
+      color: #666;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Nigerian Money Tools</h1>
+  <p>Free Nigerian financial calculators and money tools</p>
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <h2>Welcome 👋</h2>
+    <p>
+      Use these free tools to estimate savings, loans, budgets and currency
+      conversions. All calculations are estimates and should be used for
+      planning purposes.
+    </p>
+  </div>
+
+  <!-- SAVINGS CALCULATOR -->
+  <div class="tool">
+    <h2>💰 Savings Calculator</h2>
+
+    <label>Starting Amount (₦)</label>
+    <input type="number" id="startingSavings" placeholder="Example: 10000">
+
+    <label>Amount You Save Each Month (₦)</label>
+    <input type="number" id="monthlySavings" placeholder="Example: 20000">
+
+    <label>Number of Months</label>
+    <input type="number" id="savingMonths" placeholder="Example: 12">
+
+    <label>Annual Interest Rate (%)</label>
+    <input type="number" id="interestRate" placeholder="Example: 5">
+
+    <button onclick="calculateSavings()">Calculate Savings</button>
+
+    <div id="savingsResult" class="result" style="display:none;"></div>
+  </div>
+
+
+  <!-- LOAN CALCULATOR -->
+  <div class="tool">
+    <h2>🏦 Loan Calculator</h2>
+
+    <label>Loan Amount (₦)</label>
+    <input type="number" id="loanAmount" placeholder="Example: 100000">
+
+    <label>Annual Interest Rate (%)</label>
+    <input type="number" id="loanRate" placeholder="Example: 15">
+
+    <label>Loan Duration (Months)</label>
+    <input type="number" id="loanMonths" placeholder="Example: 12">
+
+    <button onclick="calculateLoan()">Calculate Loan</button>
+
+    <div id="loanResult" class="result" style="display:none;"></div>
+  </div>
+
+
+  <!-- BUDGET CALCULATOR -->
+  <div class="tool">
+    <h2>📊 Monthly Budget Calculator</h2>
+
+    <label>Monthly Income (₦)</label>
+    <input type="number" id="income" placeholder="Example: 150000">
+
+    <label>Food (₦)</label>
+    <input type="number" id="food" placeholder="Example: 30000">
+
+    <label>Transport (₦)</label>
+    <input type="number" id="transport" placeholder="Example: 15000">
+
+    <label>Rent/Housing (₦)</label>
+    <input type="number" id="rent" placeholder="Example: 40000">
+
+    <label>Bills (₦)</label>
+    <input type="number" id="bills" placeholder="Example: 15000">
+
+    <label>Other Expenses (₦)</label>
+    <input type="number" id="other" placeholder="Example: 10000">
+
+    <button onclick="calculateBudget()">Calculate Budget</button>
+
+    <div id="budgetResult" class="result" style="display:none;"></div>
+  </div>
+
+
+  <!-- CURRENCY CONVERTER -->
+  <div class="tool">
+    <h2>💱 Simple Currency Converter</h2>
+
+    <label>Amount in Naira (₦)</label>
+    <input type="number" id="nairaAmount" placeholder="Example: 100000">
+
+    <label>Exchange Rate (₦ per $1)</label>
+    <input type="number" id="exchangeRate" placeholder="Example: 1500">
+
+    <button onclick="convertCurrency()">Convert to USD</button>
+
+    <div id="currencyResult" class="result" style="display:none;"></div>
+
+    <p class="disclaimer">
+      Exchange rates change frequently. Enter the current rate you want to use.
+    </p>
+  </div>
+
+</div>
+
+
+<footer>
+  <p>© 2026 Nigerian Money Tools</p>
+  <p>Free financial calculators for Nigerians.</p>
+</footer>
+
+
+<script>
+
+function formatNaira(number) {
+  return new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+    maximumFractionDigits: 2
+  }).format(number);
+}
+
+
+/* SAVINGS CALCULATOR */
+
+function calculateSavings() {
+
+  let starting = Number(document.getElementById("startingSavings").value);
+  let monthly = Number(document.getElementById("monthlySavings").value);
+  let months = Number(document.getElementById("savingMonths").value);
+  let annualRate = Number(document.getElementById("interestRate").value);
+
+  if (months <= 0) {
+    alert("Please enter a valid number of months.");
+    return;
+  }
+
+  let monthlyRate = annualRate / 100 / 12;
+
+  let futureValue;
+
+  if (monthlyRate === 0) {
+    futureValue = starting + (monthly * months);
+  } else {
+    futureValue =
+      starting * Math.pow(1 + monthlyRate, months) +
+      monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+  }
+
+  let totalDeposits = starting + (monthly * months);
+  let interest = futureValue - totalDeposits;
+
+  let result = document.getElementById("savingsResult");
+
+  result.style.display = "block";
+
+  result.innerHTML =
+    "Estimated total savings: " + formatNaira(futureValue) +
+    "<br>Amount deposited: " + formatNaira(totalDeposits) +
+    "<br>Estimated interest: " + formatNaira(interest);
+}
+
+
+/* LOAN CALCULATOR */
+
+function calculateLoan() {
+
+  let principal = Number(document.getElementById("loanAmount").value);
+  let annualRate = Number(document.getElementById("loanRate").value);
+  let months = Number(document.getElementById("loanMonths").value);
+
+  if (principal <= 0 || months <= 0) {
+    alert("Please enter valid loan information.");
+    return;
+  }
+
+  let monthlyRate = annualRate / 100 / 12;
+
+  let payment;
+
+  if (monthlyRate === 0) {
+    payment = principal / months;
+  } else {
+    payment =
+      principal *
+      (monthlyRate * Math.pow(1 + monthlyRate, months)) /
+      (Math.pow(1 + monthlyRate, months) - 1);
+  }
+
+  let totalPayment = payment * months;
+  let totalInterest = totalPayment - principal;
+
+  let result = document.getElementById("loanResult");
+
+  result.style.display = "block";
+
+  result.innerHTML =
+    "Estimated monthly payment: " + formatNaira(payment) +
+    "<br>Total repayment: " + formatNaira(totalPayment) +
+    "<br>Total interest: " + formatNaira(totalInterest);
+}
+
+
+/* BUDGET CALCULATOR */
+
+function calculateBudget() {
+
+  let income = Number(document.getElementById("income").value);
+  let food = Number(document.getElementById("food").value);
+  let transport = Number(document.getElementById("transport").value);
+  let rent = Number(document.getElementById("rent").value);
+  let bills = Number(document.getElementById("bills").value);
+  let other = Number(document.getElementById("other").value);
+
+  let totalExpenses =
+    food + transport + rent + bills + other;
+
+  let remaining = income - totalExpenses;
+
+  let result = document.getElementById("budgetResult");
+
+  result.style.display = "block";
+
+  result.innerHTML =
+    "Total expenses: " + formatNaira(totalExpenses) +
+    "<br>Money remaining: " + formatNaira(remaining);
+}
+
+
+/* CURRENCY CONVERTER */
+
+function convertCurrency() {
+
+  let naira = Number(document.getElementById("nairaAmount").value);
+  let rate = Number(document.getElementById("exchangeRate").value);
+
+  if (rate <= 0) {
+    alert("Please enter a valid exchange rate.");
+    return;
+  }
+
+  let dollars = naira / rate;
+
+  let result = document.getElementById("currencyResult");
+
+  result.style.display = "block";
+
+  result.innerHTML =
+    formatNaira(naira) +
+    " ≈ $" + dollars.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
