@@ -1,126 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaijaNumber — US & Canada Phone Numbers</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NaijaNumber | US & Canada Numbers</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #172033;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px 20px;
-      text-align: center;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 25px;
-    }
+header {
+  background: #111827;
+  color: white;
+  padding: 22px 18px;
+  text-align: center;
+}
 
-    header p {
-      margin: 7px 0 0;
-      color: #cbd5e1;
-    }
+header h1 {
+  margin: 0;
+  font-size: 27px;
+}
 
-    .hero {
-      padding: 45px 20px 30px;
-      text-align: center;
-      background: white;
-    }
+header p {
+  margin: 8px 0 0;
+  color: #cbd5e1;
+}
 
-    .hero h2 {
-      font-size: 32px;
-      margin: 0 0 12px;
-    }
+.hero {
+  background: white;
+  text-align: center;
+  padding: 42px 20px;
+}
 
-    .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: #64748b;
-      line-height: 1.6;
-    }
+.hero h2 {
+  margin: 0 0 12px;
+  font-size: 31px;
+}
 
-    .container {
-      max-width: 950px;
-      margin: 30px auto;
-      padding: 0 18px;
-    }
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  color: #64748b;
+  line-height: 1.6;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-    }
+.container {
+  max-width: 950px;
+  margin: 30px auto;
+  padding: 0 18px;
+}
 
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 18px rgba(0,0,0,.08);
-    }
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
 
-    .flag {
-      font-size: 40px;
-    }
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
 
-    .card h3 {
-      font-size: 22px;
-      margin: 12px 0;
-    }
+.flag {
+  font-size: 40px;
+}
 
-    .price {
-      font-size: 27px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
+.card h3 {
+  margin: 12px 0;
+}
 
-    .period {
-      color: #64748b;
-      margin-bottom: 18px;
-    }
+.price {
+  font-size: 27px;
+  font-weight: bold;
+  margin: 15px 0 5px;
+}
 
-    button {
-      width: 100%;
-      border: 0;
-      border-radius: 9px;
-      padding: 14px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #16a34a;
-      color: white;
-    }
+.period {
+  color: #64748b;
+  margin-bottom: 18px;
+}
 
-    button:hover {
-      opacity: .9;
-    }
+button {
+  width: 100%;
+  border: none;
+  border-radius: 9px;
+  padding: 14px;
+  background: #16a34a;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .info {
-      background: white;
-      margin-top: 25px;
-      padding: 24px;
-      border-radius: 14px;
-      line-height: 1.7;
-    }
+button:hover {
+  opacity: .9;
+}
 
-    footer {
-      margin-top: 45px;
-      padding: 25px;
-      text-align: center;
-      background: #111827;
-      color: #cbd5e1;
-      font-size: 14px;
-    }
-  </style>
+.order-box {
+  display: none;
+  background: white;
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+.order-box h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.order-summary {
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+
+.info {
+  background: white;
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 15px;
+  line-height: 1.7;
+}
+
+footer {
+  margin-top: 45px;
+  padding: 25px;
+  text-align: center;
+  background: #111827;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+</style>
 </head>
 
 <body>
@@ -133,8 +171,8 @@
 <section class="hero">
   <h2>Get a US or Canada Number</h2>
   <p>
-    Choose a number plan below. Simple pricing for customers in Nigeria
-    and other supported locations.
+    Choose a plan below and submit your order details.
+    Numbers are provided through supported phone-number providers.
   </p>
 </section>
 
@@ -147,8 +185,8 @@
       <h3>US Number — 7 Days</h3>
       <div class="price">₦1,000</div>
       <div class="period">7-day plan</div>
-      <button onclick="order('US Number - 7 Days', '₦1,000')">
-        Buy Now
+      <button onclick="openOrder('US Number - 7 Days', '₦1,000')">
+        Order Now
       </button>
     </div>
 
@@ -157,8 +195,8 @@
       <h3>US Number — 30 Days</h3>
       <div class="price">₦3,000</div>
       <div class="period">30-day plan</div>
-      <button onclick="order('US Number - 30 Days', '₦3,000')">
-        Buy Now
+      <button onclick="openOrder('US Number - 30 Days', '₦3,000')">
+        Order Now
       </button>
     </div>
 
@@ -167,8 +205,8 @@
       <h3>Canada Number — 7 Days</h3>
       <div class="price">₦1,500</div>
       <div class="period">7-day plan</div>
-      <button onclick="order('Canada Number - 7 Days', '₦1,500')">
-        Buy Now
+      <button onclick="openOrder('Canada Number - 7 Days', '₦1,500')">
+        Order Now
       </button>
     </div>
 
@@ -177,19 +215,43 @@
       <h3>Canada Number — 30 Days</h3>
       <div class="price">₦4,000</div>
       <div class="period">30-day plan</div>
-      <button onclick="order('Canada Number - 30 Days', '₦4,000')">
-        Buy Now
+      <button onclick="openOrder('Canada Number - 30 Days', '₦4,000')">
+        Order Now
       </button>
     </div>
 
   </div>
 
+  <div class="order-box" id="orderBox">
+
+    <h2>Complete Your Order</h2>
+
+    <div class="order-summary">
+      <strong>Selected plan:</strong>
+      <div id="selectedPlan"></div>
+    </div>
+
+    <label for="customerName">Full Name</label>
+    <input type="text" id="customerName" placeholder="Enter your name">
+
+    <label for="customerEmail">Email Address</label>
+    <input type="email" id="customerEmail" placeholder="Enter your email">
+
+    <label for="customerPhone">WhatsApp / Phone Number</label>
+    <input type="tel" id="customerPhone" placeholder="e.g. 08012345678">
+
+    <button style="margin-top:20px;" onclick="submitOrder()">
+      Continue Order
+    </button>
+
+  </div>
+
   <div class="info">
     <h3>How it works</h3>
-    <p>1. Choose your US or Canada number plan.</p>
-    <p>2. Complete your order and payment.</p>
-    <p>3. Your number is provisioned through our supported provider.</p>
-    <p>4. Use the number for legitimate calls and SMS where supported.</p>
+    <p>1. Select your US or Canada number plan.</p>
+    <p>2. Enter your order information.</p>
+    <p>3. Complete payment when checkout is connected.</p>
+    <p>4. Your number is provisioned through the supported provider.</p>
   </div>
 
 </div>
@@ -199,13 +261,45 @@
 </footer>
 
 <script>
-  function order(product, price) {
-    alert(
-      "You selected: " + product +
-      "\\nPrice: " + price +
-      "\\n\\nPayment and number activation will be connected next."
-    );
+
+let selectedProduct = "";
+let selectedPrice = "";
+
+function openOrder(product, price) {
+
+  selectedProduct = product;
+  selectedPrice = price;
+
+  document.getElementById("selectedPlan").innerHTML =
+    product + " — " + price;
+
+  document.getElementById("orderBox").style.display = "block";
+
+  document.getElementById("orderBox").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function submitOrder() {
+
+  let name = document.getElementById("customerName").value;
+  let email = document.getElementById("customerEmail").value;
+  let phone = document.getElementById("customerPhone").value;
+
+  if (!name || !email || !phone) {
+    alert("Please complete all fields before continuing.");
+    return;
   }
+
+  alert(
+    "Order received!\\n\\n" +
+    "Plan: " + selectedProduct + "\\n" +
+    "Price: " + selectedPrice + "\\n" +
+    "Name: " + name + "\\n\\n" +
+    "Payment checkout will be connected next."
+  );
+}
+
 </script>
 
 </body>
