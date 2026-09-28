@@ -126,8 +126,7 @@ label {
   font-weight: bold;
 }
 
-input,
-select {
+input {
   width: 100%;
   padding: 13px;
   border: 1px solid #cbd5e1;
@@ -250,8 +249,8 @@ footer {
     <h3>How it works</h3>
     <p>1. Select your US or Canada number plan.</p>
     <p>2. Enter your order information.</p>
-    <p>3. Complete payment when checkout is connected.</p>
-    <p>4. Your number is provisioned through the supported provider.</p>
+    <p>3. Complete payment through Paystack.</p>
+    <p>4. Your number is provided through the supported provider.</p>
   </div>
 
 </div>
@@ -279,21 +278,20 @@ function openOrder(product, price) {
     behavior: "smooth"
   });
 }
+
 function submitOrder() {
 
-  let name = document.getElementById("customerName").value;
-  let email = document.getElementById("customerEmail").value;
-  let phone = document.getElementById("customerPhone").value;
+  let name = document.getElementById("customerName").value.trim();
+  let email = document.getElementById("customerEmail").value.trim();
+  let phone = document.getElementById("customerPhone").value.trim();
 
   if (!name || !email || !phone) {
     alert("Please complete all fields before continuing.");
     return;
   }
 
- window.location.href = "https://paystack.shop/pay/5v3bjbq8gz"; 
-  y/5v3bjbq8gz";
+  window.location.href = "https://paystack.shop/pay/5v3bjbq8gz";
 }
-
 
 </script>
 
