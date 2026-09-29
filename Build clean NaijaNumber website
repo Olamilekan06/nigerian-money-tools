@@ -16,7 +16,22 @@
       box-sizing: border-box;
     }
 
-    body {
+    body 
+<body>
+
+<div id="tn-app"></div>
+
+<script
+  src="https://tn.platfone.com/tn.js"
+  id="tn-script"
+  data-name="NaijaNumber"
+  data-logo="https://raw.githubusercontent.com/Olamilekan06/nigerian-money-tools/refs/heads/main/IMG_0619.jpeg"
+  data-background-color="#ffffff"
+  data-text-color="#14142b"
+  data-button-color="#fa8231">
+</script>
+
+<header>{
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f5f7fb;
