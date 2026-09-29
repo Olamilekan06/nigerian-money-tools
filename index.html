@@ -4,138 +4,159 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NaijaNumber | US & Canada Numbers</title>
-
-  <meta
-    name="description"
-    content="NaijaNumber provides US and Canada phone-number services."
-  >
+  <title>NaijaNumber - USA & Canada Numbers</title>
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
       background: #f5f7fb;
-      color: #172033;
+      color: #111827;
     }
 
     header {
       background: #111827;
-      color: #ffffff;
-      padding: 22px 20px;
-      text-align: center;
+      color: white;
+      padding: 18px 20px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    header p {
-      margin: 8px 0 0;
-      color: #d1d5db;
-      font-size: 15px;
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .login {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
     }
 
     .hero {
+      background: white;
+      padding: 50px 20px 35px;
       text-align: center;
-      padding: 55px 20px 35px;
     }
 
-    .hero h2 {
-      margin: 0 0 15px;
+    .hero h1 {
       font-size: 34px;
+      margin-bottom: 12px;
     }
 
     .hero p {
-      max-width: 680px;
-      margin: 0 auto;
-      color: #5b6475;
-      line-height: 1.6;
+      color: #6b7280;
+      font-size: 16px;
     }
 
-    .service {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto 45px;
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
       padding: 0 20px;
     }
 
-    .service-box {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 25px;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    .section-title {
+      margin-bottom: 18px;
+      font-size: 22px;
     }
 
-    .service-box h3 {
-      text-align: center;
-      margin: 0 0 10px;
-      font-size: 23px;
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
-    .notice {
-      text-align: center;
-      color: #667085;
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border: 1px solid #e5e7eb;
+    }
+
+    .country {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #6b7280;
       font-size: 14px;
       line-height: 1.5;
-      margin: 0 0 25px;
+      margin-bottom: 18px;
     }
 
-    #tn-app {
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .price span {
+      font-size: 13px;
+      color: #6b7280;
+      font-weight: normal;
+    }
+
+    .buy {
       width: 100%;
-      min-height: 250px;
+      border: none;
+      background: #16a34a;
+      color: white;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .info {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto 45px;
-      padding: 0 20px;
+    .buy:hover {
+      background: #15803d;
     }
 
-    .info-box {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 25px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    .features {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
     }
 
-    .info-box h3 {
-      margin-top: 0;
+    .feature {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
     }
 
-    .info-box li {
-      margin-bottom: 10px;
+    .feature h3 {
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .feature p {
+      color: #6b7280;
+      font-size: 14px;
       line-height: 1.5;
-    }
-
-    .info-box p {
-      color: #5b6475;
-      line-height: 1.6;
     }
 
     footer {
-      background: #111827;
-      color: #d1d5db;
+      margin-top: 50px;
+      padding: 25px;
       text-align: center;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 28px;
-      }
-
-      .service-box,
-      .info-box {
-        padding: 18px;
-      }
+      color: #6b7280;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -143,65 +164,86 @@
 <body>
 
   <header>
-    <h1>NaijaNumber</h1>
-    <p>US & Canada phone-number services</p>
+    <div class="nav">
+      <div class="logo">NaijaNumber</div>
+      <a class="login" href="#">Login</a>
+    </div>
   </header>
 
   <section class="hero">
-    <h2>Get a US or Canada Number</h2>
-
-    <p>
-      Browse the available phone-number services below and follow
-      the instructions provided to complete your order.
-    </p>
+    <h1>Get USA & Canada Numbers</h1>
+    <p>Choose a number, pay securely and manage your order online.</p>
   </section>
 
-  <section class="service">
-    <div class="service-box">
+  <main class="container">
 
-      <h3>Available Number Services</h3>
+    <h2 class="section-title">Available Numbers</h2>
 
-      <p class="notice">
-        Available services, numbers and pricing are provided
-        through our number-service provider.
-      </p>
+    <div class="numbers">
 
-      <div id="tn-app"></div>
+      <div class="card">
+        <div class="country">🇺🇸 USA Number</div>
+
+        <div class="description">
+          Get a USA number and manage your service from your NaijaNumber account.
+        </div>
+
+        <div class="price">
+          ₦500 <span>/ number</span>
+        </div>
+
+        <button class="buy" onclick="buyNumber('USA')">
+          Buy USA Number
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="country">🇨🇦 Canada Number</div>
+
+        <div class="description">
+          Get a Canada number and manage your service from your NaijaNumber account.
+        </div>
+
+        <div class="price">
+          ₦500 <span>/ number</span>
+        </div>
+
+        <button class="buy" onclick="buyNumber('Canada')">
+          Buy Canada Number
+        </button>
+      </div>
 
     </div>
-  </section>
 
-  <section class="info">
-    <div class="info-box">
+    <div class="features">
 
-      <h3>How it works</h3>
+      <div class="feature">
+        <h3>🔐 Secure Payment</h3>
+        <p>Payments can be processed through Paystack.</p>
+      </div>
 
-      <ol>
-        <li>Choose an available service.</li>
-        <li>Follow the instructions displayed by the provider.</li>
-        <li>Complete the required payment.</li>
-        <li>Use the service only for legitimate and permitted purposes.</li>
-      </ol>
+      <div class="feature">
+        <h3>📱 Number Management</h3>
+        <p>Customers can manage purchased numbers from their account.</p>
+      </div>
 
-      <p>
-        Availability and pricing may change depending on the provider.
-      </p>
+      <div class="feature">
+        <h3>💬 SMS</h3>
+        <p>SMS functionality will be connected to our number provider.</p>
+      </div>
 
     </div>
-  </section>
+
+  </main>
 
   <footer>
     © 2026 NaijaNumber. All rights reserved.
   </footer>
 
-  <script
-    src="https://tn.platfone.com/tn.js"
-    id="tn-script"
-    data-name="NaijaNumber"
-    data-logo="https://raw.githubusercontent.com/Olamilekan06/nigerian-money-tools/refs/heads/main/IMG_0619.jpeg"
-    data-background-color="#ffffff"
-    data-text-color="#14142b"
-    data-button-color="#fa8231">
+  <script>
+    function buyNumber(country) {
+      alert("You selected a " + country + " number.");
+    }
   </script>
 
 </body>
