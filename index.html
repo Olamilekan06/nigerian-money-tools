@@ -25,7 +25,7 @@
 
     header {
       background: #111827;
-      color: white;
+      color: #ffffff;
       padding: 22px 20px;
       text-align: center;
     }
@@ -38,47 +38,52 @@
     header p {
       margin: 8px 0 0;
       color: #d1d5db;
+      font-size: 15px;
     }
 
     .hero {
       text-align: center;
-      padding: 50px 20px 35px;
+      padding: 55px 20px 35px;
     }
 
     .hero h2 {
-      font-size: 34px;
       margin: 0 0 15px;
+      font-size: 34px;
     }
 
     .hero p {
       max-width: 680px;
-      margin: auto;
-      line-height: 1.6;
+      margin: 0 auto;
       color: #5b6475;
+      line-height: 1.6;
     }
 
     .service {
+      width: 100%;
       max-width: 1000px;
       margin: 0 auto 45px;
       padding: 0 20px;
     }
 
     .service-box {
-      background: white;
+      background: #ffffff;
       border-radius: 16px;
       padding: 25px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
     }
 
     .service-box h3 {
       text-align: center;
-      margin-top: 0;
+      margin: 0 0 10px;
+      font-size: 23px;
     }
 
     .notice {
       text-align: center;
       color: #667085;
+      font-size: 14px;
       line-height: 1.5;
+      margin: 0 0 25px;
     }
 
     #tn-app {
@@ -87,20 +92,26 @@
     }
 
     .info {
+      width: 100%;
       max-width: 1000px;
       margin: 0 auto 45px;
       padding: 0 20px;
     }
 
     .info-box {
-      background: white;
+      background: #ffffff;
       border-radius: 16px;
       padding: 25px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .info-box h3 {
+      margin-top: 0;
     }
 
     .info-box li {
       margin-bottom: 10px;
+      line-height: 1.5;
     }
 
     .info-box p {
@@ -113,6 +124,18 @@
       color: #d1d5db;
       text-align: center;
       padding: 25px 15px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 28px;
+      }
+
+      .service-box,
+      .info-box {
+        padding: 18px;
+      }
     }
   </style>
 </head>
