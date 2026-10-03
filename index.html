@@ -171,6 +171,7 @@
       <h3>US Number</h3>
       <div class="country">🇺🇸 United States</div>
       <div class="price">₦1,000</div>
+
       <button onclick="selectPlan('US Number - 7 Days', 1000)">
         Get US Number
       </button>
@@ -180,6 +181,7 @@
       <h3>Canada Number</h3>
       <div class="country">🇨🇦 Canada</div>
       <div class="price">₦1,500</div>
+
       <button onclick="selectPlan('Canada Number - 7 Days', 1500)">
         Get Canada Number
       </button>
@@ -188,6 +190,7 @@
   </div>
 
   <div class="form-box" id="orderBox">
+
     <h2>Complete Your Order</h2>
 
     <input
@@ -220,11 +223,12 @@
       readonly
     >
 
-    <button onclick="submitOrder()">
+    <button id="continueButton" onclick="submitOrder()">
       Continue
     </button>
 
     <div id="message" class="message"></div>
+
   </div>
 
 </div>
@@ -235,16 +239,26 @@
 
 <script>
 
+  /* ================================
+     SUPABASE CONNECTION
+  ================================= */
+
   const SUPABASE_URL =
     "https://ircehxmzocvgbkejnubm.supabase.co";
 
   const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_OhSR_3jGbyIsHD2Hq-TDog_bXqqH559";
 
-  const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+  /* ================================
+     PLAN SELECTION
+  ================================= */
 
   let selectedPlan = "";
   let selectedPrice = 0;
@@ -254,17 +268,24 @@
     selectedPlan = plan;
     selectedPrice = price;
 
-    document.getElementById("selectedPlan").value = plan;
+    document.getElementById("selectedPlan").value =
+      plan;
 
     document.getElementById("selectedPrice").value =
       "₦" + price.toLocaleString();
 
-    document.getElementById("orderBox").style.display = "block";
+    document.getElementById("orderBox").style.display =
+      "block";
 
     document.getElementById("orderBox").scrollIntoView({
       behavior: "smooth"
     });
   }
+
+
+  /* ================================
+     SUBMIT ORDER
+  ================================= */
 
   async function submitOrder() {
 
@@ -280,29 +301,69 @@
     const message =
       document.getElementById("message");
 
+    const button =
+      document.getElementById("continueButton");
+
+
     message.style.display = "none";
     message.className = "message";
+
+
+    /* Check required fields */
 
     if (!name || !email || !phone) {
 
       message.textContent =
         "Please fill in all the fields.";
 
-      message.classList.add("error");
-      message.style.display = "block";
+      message.className =
+        "message error";
+
+      message.style.display =
+        "block";
 
       return;
     }
 
+
+    /* Check that a plan was selected */
+
+    if (!selectedPlan || !selectedPrice) {
+
+      message.textContent =
+        "Please select a number plan first.";
+
+      message.className =
+        "message error";
+
+      message.style.display =
+        "block";
+
+      return;
+    }
+
+
+    /* Disable button while submitting */
+
+    button.disabled = true;
+    button.textContent = "Submitting...";
+
+
     message.textContent =
       "Submitting your order...";
 
-    message.className = "message success";
-    message.style.display = "block";
+    message.className =
+      "message success";
+
+    message.style.display =
+      "block";
+
+
+    /* Save order to Supabase */
 
     const { error } =
       await supabaseClient
-        .from("orders")
+        .from("Order")
         .insert([
           {
             name: name,
@@ -314,27 +375,35 @@
           }
         ]);
 
+
+    /* Handle error */
+
     if (error) {
 
-      console.error(error);
+      console.error("Supabase error:", error);
 
       message.textContent =
-        "Your order could not be submitted yet. Please try again.";
+        "Your order could not be submitted. Please try again.";
 
-      message.className = "message error";
-      message.style.display = "block";
+      message.className =
+        "message error";
+
+      message.style.display =
+        "block";
+
+      button.disabled = false;
+      button.textContent = "Continue";
 
       return;
     }
 
+
+    /* Successful order */
+
     message.textContent =
       "Order received successfully! We will process your order.";
 
-    message.className = "message success";
-    message.style.display = "block";
-  }
+    message.className =
+      "message success";
 
-</script>
-
-</body>
-</html>
+    message.s
