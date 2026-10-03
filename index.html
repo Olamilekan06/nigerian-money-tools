@@ -3,238 +3,354 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaijaNumber - USA & Canada Numbers</title>
-  <script src="https://js.paystack.co/v2/inline.js"></script>
+  <title>NaijaNumber | US & Canada Numbers</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: Arial, sans-serif;
-      background: #f5f7fb;
+      background: #f5f7fa;
       color: #111827;
     }
+
     header {
       background: #111827;
       color: white;
-      padding: 18px 20px;
-    }
-    .nav {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
-    .login {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .hero {
-      background: white;
-      padding: 50px 20px 35px;
+      padding: 20px;
       text-align: center;
     }
-    .hero h1 {
-      font-size: 34px;
-      margin-bottom: 12px;
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 6px;
     }
-    .hero p {
-      color: #6b7280;
-      font-size: 16px;
+
+    header p {
+      color: #d1d5db;
     }
+
     .container {
-      max-width: 1100px;
+      max-width: 900px;
       margin: 30px auto;
-      padding: 0 20px;
+      padding: 0 16px;
     }
-    .section-title {
-      margin-bottom: 18px;
-      font-size: 22px;
-    }
-    .numbers {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-    .card {
+
+    .hero {
       background: white;
       border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      border: 1px solid #e5e7eb;
+      padding: 25px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
     }
-    .country {
-      font-size: 18px;
-      font-weight: bold;
+
+    .hero h2 {
       margin-bottom: 10px;
     }
-    .description {
+
+    .hero p {
       color: #6b7280;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 18px;
     }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .plan {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .plan h3 {
+      margin-bottom: 10px;
+    }
+
+    .country {
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
     .price {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
       margin-bottom: 18px;
     }
-    .price span {
-      font-size: 13px;
-      color: #6b7280;
-      font-weight: normal;
-    }
-    .buy {
+
+    button {
       width: 100%;
       border: none;
-      background: #16a34a;
-      color: white;
-      padding: 13px;
       border-radius: 8px;
+      padding: 13px;
+      background: #0b8f55;
+      color: white;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
-    .buy:hover {
-      background: #15803d;
+
+    button:hover {
+      background: #087746;
     }
-    .features {
-      margin-top: 35px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-    }
-    .feature {
+
+    .form-box {
+      display: none;
       background: white;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
+      margin-top: 25px;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
     }
-    .feature h3 {
-      margin-bottom: 8px;
-      font-size: 16px;
+
+    .form-box h2 {
+      margin-bottom: 18px;
     }
-    .feature p {
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
       color: #6b7280;
       font-size: 14px;
-      line-height: 1.5;
-    }
-    footer {
-      margin-top: 50px;
-      padding: 25px;
-      text-align: center;
-      color: #6b7280;
-      font-size: 13px;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="nav">
-      <div class="logo">NaijaNumber</div>
-      <a class="login" href="#">Login</a>
+
+<header>
+  <h1>NaijaNumber</h1>
+  <p>US & Canada virtual numbers</p>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <h2>Choose Your Number Plan</h2>
+    <p>Get a US or Canada number and manage your order online.</p>
+  </div>
+
+  <div class="plans">
+
+    <div class="plan">
+      <h3>US Number</h3>
+      <div class="country">🇺🇸 United States</div>
+      <div class="price">₦1,000</div>
+      <button onclick="selectPlan('US Number - 7 Days', 1000)">
+        Get US Number
+      </button>
     </div>
-  </header>
-  <section class="hero">
-    <h1>Get USA & Canada Numbers</h1>
-    <p>Choose a number, pay securely and manage your order online.</p>
-  </section>
-  <main class="container">
-<h2 class="section-title">Available Numbers</h2>
-<div class="numbers">
-  <div class="card">
-    <div class="country">🇺🇸 USA Number</div>
-    <div class="description">
-      Get a USA number and manage your service from your NaijaNumber account.
+
+    <div class="plan">
+      <h3>Canada Number</h3>
+      <div class="country">🇨🇦 Canada</div>
+      <div class="price">₦1,500</div>
+      <button onclick="selectPlan('Canada Number - 7 Days', 1500)">
+        Get Canada Number
+      </button>
     </div>
-    <div class="price">
-      ₦500 <span>/ number</span>
-    </div>
-    <button class="buy" onclick="buyNumber('USA')">
-      Buy USA Number
+
+  </div>
+
+  <div class="form-box" id="orderBox">
+    <h2>Complete Your Order</h2>
+
+    <input
+      type="text"
+      id="name"
+      placeholder="Your full name"
+    >
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Your email address"
+    >
+
+    <input
+      type="tel"
+      id="phone"
+      placeholder="Your phone number"
+    >
+
+    <input
+      type="text"
+      id="selectedPlan"
+      readonly
+    >
+
+    <input
+      type="text"
+      id="selectedPrice"
+      readonly
+    >
+
+    <button onclick="submitOrder()">
+      Continue
     </button>
+
+    <div id="message" class="message"></div>
   </div>
-  <div class="card">
-    <div class="country">🇨🇦 Canada Number</div>
-    <div class="description">
-      Get a Canada number and manage your service from your NaijaNumber account.
-    </div>
-    <div class="price">
-      ₦500 <span>/ number</span>
-    </div>
-    <button class="buy" onclick="buyNumber('Canada')">
-      Buy Canada Number
-    </button>
-  </div>
+
 </div>
-<div class="features">
-  <div class="feature">
-    <h3>🔐 Secure Payment</h3>
-    <p>Payments are processed securely through Paystack.</p>
-  </div>
-  <div class="feature">
-    <h3>📱 Number Management</h3>
-    <p>Customers can manage purchased numbers from their account.</p>
-  </div>
-  <div class="feature">
-    <h3>💬 SMS</h3>
-    <p>SMS functionality will be connected to our number provider.</p>
-  </div>
-</div>
-  </main>
-  <footer>
-    © 2026 NaijaNumber. All rights reserved.
-  </footer>
-  <script>
-    const PAYSTACK_PUBLIC_KEY = "pk_live_c7647db304e5e9614b4a98012013edfb5b85d22c";
-    function buyNumber(country) {
-      const email = prompt("Enter your email address:");
-      if (!email) {
-        alert("Email address is required.");
-        return;
-      }
-      if (!email.includes("@")) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-      const popup = new Paystack();
-      popup.checkout({
-        key: PAYSTACK_PUBLIC_KEY,
-        email: email,
-        amount: 50000,
-        currency: "NGN",
-        metadata: {
-          custom_fields: [
-            {
-              display_name: "Number Type",
-              variable_name: "number_type",
-              value: country
-            }
-          ]
-        },
-        onSuccess: (transaction) => {
-          alert(
-            "Payment successful!\n\n" +
-            "Number type: " + country + "\n" +
-            "Reference: " + transaction.reference
-          );
-        },
-        onCancel: () => {
-          alert("Payment was cancelled.");
-        },
-        onError: (error) => {
-          alert("Payment error: " + error.message);
-        }
-      });
+
+<footer>
+  © 2026 NaijaNumber. All rights reserved.
+</footer>
+
+<script>
+  /*
+   ==========================================================
+   SUPABASE CONNECTION
+   ==========================================================
+  */
+
+  const SUPABASE_URL = "https://ircehxmzocvgbkejnubm.supabase.co";
+
+  /*
+   PASTE YOUR SUPABASE PUBLISHABLE KEY BETWEEN THE QUOTES BELOW.
+  */
+  const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+  /*
+   ==========================================================
+   PLAN SELECTION
+   ==========================================================
+  */
+
+  let selectedPlan = "";
+  let selectedPrice = 0;
+
+  function selectPlan(plan, price) {
+    selectedPlan = plan;
+    selectedPrice = price;
+
+    document.getElementById("selectedPlan").value = plan;
+    document.getElementById("selectedPrice").value =
+      "₦" + price.toLocaleString();
+
+    document.getElementById("orderBox").style.display = "block";
+
+    document.getElementById("orderBox").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+
+  /*
+   ==========================================================
+   SAVE ORDER TO SUPABASE
+   ==========================================================
+  */
+
+  async function submitOrder() {
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    const message = document.getElementById("message");
+
+    message.style.display = "none";
+    message.className = "message";
+
+    if (!name || !email || !phone) {
+      message.textContent = "Please fill in all the fields.";
+      message.classList.add("error");
+      message.style.display = "block";
+      return;
     }
-  </script>
+
+    if (
+      SUPABASE_PUBLISHABLE_KEY ===https://ircehxmzocvgbkejnubm.supabase.co
+      "PASTE_YOUR_PUBLISHABLE_KEY_HERE"
+    ) {
+      message.textContent =
+        "Supabase is not connected yet. Please add your Publishable key.";
+      message.classList.add("error");
+      message.style.display = "block";
+      return;
+    }
+
+    message.textContent = "Submitting your order...";
+    message.classList.add("success");
+    message.style.display = "block";
+
+    const { data, error } = await supabaseClient
+      .from("orders")
+      .insert([
+        {
+          name: name,
+          email: email,
+          phone: phone,
+          plan: selectedPlan,
+          price: selectedPrice,
+          status: "pending"
+        }
+      ])
+      .select();
+
+    if (error) {
+      console.error(error);
+
+      message.textContent =
+        "Your order could not be submitted yet. Please try again.";
+
+      message.className = "message error";
+      message.style.display = "block";
+
+      return;
+    }
+
+    message.textContent =
+      "Order received successfully! We will process your order.";
+
+    message.className = "message success";
+    message.style.display = "block";
+  }
+</script>
+
 </body>
 </html>
