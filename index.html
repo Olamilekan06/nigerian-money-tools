@@ -116,8 +116,7 @@
       margin-bottom: 18px;
     }
 
-    input,
-    select {
+    input {
       width: 100%;
       padding: 13px;
       margin-bottom: 12px;
@@ -235,39 +234,28 @@
 </footer>
 
 <script>
-  /*
-   ==========================================================
-   SUPABASE CONNECTION
-   ==========================================================
-  */
 
-  const SUPABASE_URL = "https://ircehxmzocvgbkejnubm.supabase.co";
+  const SUPABASE_URL =
+    "https://ircehxmzocvgbkejnubm.supabase.co";
 
-  /*
-   PASTE YOUR SUPABASE PUBLISHABLE KEY BETWEEN THE QUOTES BELOW.
-  */
-  const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_OhSR_3jGbyIsHD2Hq-TDog_bXqqH559";
 
   const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
 
-
-  /*
-   ==========================================================
-   PLAN SELECTION
-   ==========================================================
-  */
-
   let selectedPlan = "";
   let selectedPrice = 0;
 
   function selectPlan(plan, price) {
+
     selectedPlan = plan;
     selectedPrice = price;
 
     document.getElementById("selectedPlan").value = plan;
+
     document.getElementById("selectedPrice").value =
       "₦" + price.toLocaleString();
 
@@ -278,61 +266,56 @@
     });
   }
 
-
-  /*
-   ==========================================================
-   SAVE ORDER TO SUPABASE
-   ==========================================================
-  */
-
   async function submitOrder() {
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
+    const name =
+      document.getElementById("name").value.trim();
 
-    const message = document.getElementById("message");
+    const email =
+      document.getElementById("email").value.trim();
+
+    const phone =
+      document.getElementById("phone").value.trim();
+
+    const message =
+      document.getElementById("message");
 
     message.style.display = "none";
     message.className = "message";
 
     if (!name || !email || !phone) {
-      message.textContent = "Please fill in all the fields.";
-      message.classList.add("error");
-      message.style.display = "block";
-      return;
-    }
 
-    if (
-      SUPABASE_PUBLISHABLE_KEY ===https://ircehxmzocvgbkejnubm.supabase.co
-      "PASTE_YOUR_PUBLISHABLE_KEY_HERE"
-    ) {
       message.textContent =
-        "Supabase is not connected yet. Please add your Publishable key.";
+        "Please fill in all the fields.";
+
       message.classList.add("error");
       message.style.display = "block";
+
       return;
     }
 
-    message.textContent = "Submitting your order...";
-    message.classList.add("success");
+    message.textContent =
+      "Submitting your order...";
+
+    message.className = "message success";
     message.style.display = "block";
 
-    const { data, error } = await supabaseClient
-      .from("orders")
-      .insert([
-        {
-          name: name,
-          email: email,
-          phone: phone,
-          plan: selectedPlan,
-          price: selectedPrice,
-          status: "pending"
-        }
-      ])
-      .select();
+    const { error } =
+      await supabaseClient
+        .from("orders")
+        .insert([
+          {
+            name: name,
+            email: email,
+            phone: phone,
+            plan: selectedPlan,
+            price: selectedPrice,
+            status: "pending"
+          }
+        ]);
 
     if (error) {
+
       console.error(error);
 
       message.textContent =
@@ -350,6 +333,7 @@
     message.className = "message success";
     message.style.display = "block";
   }
+
 </script>
 
 </body>
