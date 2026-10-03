@@ -103,6 +103,11 @@
       background: #087746;
     }
 
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .form-box {
       display: none;
       background: white;
@@ -238,11 +243,6 @@
 </footer>
 
 <script>
-
-  /* ================================
-     SUPABASE CONNECTION
-  ================================= */
-
   const SUPABASE_URL =
     "https://ircehxmzocvgbkejnubm.supabase.co";
 
@@ -255,40 +255,28 @@
       SUPABASE_PUBLISHABLE_KEY
     );
 
-
-  /* ================================
-     PLAN SELECTION
-  ================================= */
-
   let selectedPlan = "";
   let selectedPrice = 0;
 
   function selectPlan(plan, price) {
-
     selectedPlan = plan;
     selectedPrice = price;
 
-    document.getElementById("selectedPlan").value =
-      plan;
-
+    document.getElementById("selectedPlan").value = plan;
     document.getElementById("selectedPrice").value =
       "₦" + price.toLocaleString();
 
-    document.getElementById("orderBox").style.display =
-      "block";
+    const orderBox = document.getElementById("orderBox");
 
-    document.getElementById("orderBox").scrollIntoView({
-      behavior: "smooth"
+    orderBox.style.display = "block";
+
+    orderBox.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
   }
 
-
-  /* ================================
-     SUBMIT ORDER
-  ================================= */
-
   async function submitOrder() {
-
     const name =
       document.getElementById("name").value.trim();
 
@@ -304,50 +292,34 @@
     const button =
       document.getElementById("continueButton");
 
-
     message.style.display = "none";
-    message.className = "message";
-
-
-    /* Check required fields */
 
     if (!name || !email || !phone) {
-
       message.textContent =
         "Please fill in all the fields.";
 
       message.className =
         "message error";
 
-      message.style.display =
-        "block";
+      message.style.display = "block";
 
       return;
     }
 
-
-    /* Check that a plan was selected */
-
     if (!selectedPlan || !selectedPrice) {
-
       message.textContent =
         "Please select a number plan first.";
 
       message.className =
         "message error";
 
-      message.style.display =
-        "block";
+      message.style.display = "block";
 
       return;
     }
 
-
-    /* Disable button while submitting */
-
     button.disabled = true;
     button.textContent = "Submitting...";
-
 
     message.textContent =
       "Submitting your order...";
@@ -355,55 +327,67 @@
     message.className =
       "message success";
 
-    message.style.display =
-      "block";
+    message.style.display = "block";
 
+    try {
+      const { error } =
+        await supabaseClient
+          .from("Order")
+          .insert([
+            {
+              name: name,
+              email: email,
+              phone: phone,
+              plan: selectedPlan,
+              price: selectedPrice,
+              status: "pending"
+            }
+          ]);
 
-    /* Save order to Supabase */
+      if (error) {
+        console.error("Supabase error:", error);
 
-    const { error } =
-      await supabaseClient
-        .from("Order")
-        .insert([
-          {
-            name: name,
-            email: email,
-            phone: phone,
-            plan: selectedPlan,
-            price: selectedPrice,
-            status: "pending"
-          }
-        ]);
+        message.textContent =
+          "Your order could not be submitted. Please try again.";
 
+        message.className =
+          "message error";
 
-    /* Handle error */
+        message.style.display = "block";
 
-    if (error) {
+        button.disabled = false;
+        button.textContent = "Continue";
 
-      console.error("Supabase error:", error);
+        return;
+      }
 
       message.textContent =
-        "Your order could not be submitted. Please try again.";
+        "Order received successfully! We will process your order.";
+
+      message.className =
+        "message success";
+
+      message.style.display = "block";
+
+      button.disabled = false;
+      button.textContent = "Order Submitted";
+
+    } catch (error) {
+      console.error("Unexpected error:", error);
+
+      message.textContent =
+        "Something went wrong. Please try again.";
 
       message.className =
         "message error";
 
-      message.style.display =
-        "block";
+      message.style.display = "block";
 
       button.disabled = false;
       button.textContent = "Continue";
-
-      return;
     }
+  }
+</script>
 
-
-    /* Successful order */
-
-    message.textContent =
-      "Order received successfully! We will process your order.";
-
-    message.className =
-      "message success";
-
-    message.s
+</body>
+</html>
